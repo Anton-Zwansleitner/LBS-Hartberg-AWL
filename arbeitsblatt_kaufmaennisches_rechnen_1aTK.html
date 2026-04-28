@@ -3,417 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arbeitsblatt – Kaufmännisches Rechnen | 1aTK</title>
+<title>Arbeitsblatt – Runden | 1aTK</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Barlow:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;700&family=DM+Mono:wght@400;500&family=Barlow:wght@400;500;600;700&display=swap');
 
   :root {
-    --ink:       #1a1a2e;
-    --mid:       #4a4a6a;
-    --faint:     #9898b8;
-    --rule:      #d4d4e8;
-    --accent:    #c0392b;
-    --accent2:   #2980b9;
-    --fill:      #f7f7fb;
-    --white:     #ffffff;
-    --gold:      #b8860b;
+    --ink:    #1a1a2e;
+    --mid:    #4a4a6a;
+    --faint:  #9898b8;
+    --rule:   #d4d4e8;
+    --accent: #c0392b;
+    --accent2:#2980b9;
+    --fill:   #f7f7fb;
+    --gold:   #b8860b;
+    --white:  #ffffff;
+    --ok:     #27ae60;
+    --err:    #e74c3c;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family:'Barlow',sans-serif; background:#eeeef5; color:var(--ink); padding:24px 16px 48px; }
+  .page { max-width:794px; margin:0 auto; background:var(--white); box-shadow:0 4px 32px rgba(0,0,0,.12); }
 
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: #eeeef5;
-    color: var(--ink);
-    padding: 24px 16px 48px;
-  }
+  .header { background:var(--ink); color:var(--white); display:grid; grid-template-columns:1fr auto; align-items:center; padding:22px 32px; gap:16px; }
+  .header .school { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:4px; }
+  .header .title  { font-family:'Source Serif 4',serif; font-size:22px; font-weight:700; }
+  .header .sub    { font-size:12px; color:rgba(255,255,255,.6); margin-top:5px; letter-spacing:.06em; }
+  .badge { background:var(--accent); color:#fff; font-size:13px; font-weight:700; letter-spacing:.06em; padding:6px 14px; border-radius:2px; }
+  .header-right .meta { font-size:10px; color:rgba(255,255,255,.4); margin-top:6px; letter-spacing:.1em; text-align:right; }
 
-  /* ── PAGE WRAPPER ── */
-  .page {
-    max-width: 794px;
-    margin: 0 auto;
-    background: var(--white);
-    box-shadow: 0 4px 32px rgba(0,0,0,.12);
-  }
+  .meta-bar { border-bottom:2px solid var(--ink); padding:12px 32px; display:flex; gap:32px; flex-wrap:wrap; background:var(--fill); }
+  .meta-field { display:flex; flex-direction:column; gap:3px; }
+  .meta-field label { font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--faint); font-weight:600; }
+  .meta-field input { font-family:'DM Mono',monospace; font-size:13px; border:none; border-bottom:1px solid var(--rule); background:transparent; color:var(--ink); width:160px; padding:2px 0 3px; outline:none; }
+  .meta-field input:focus { border-bottom-color:var(--accent2); }
+  .meta-field input::placeholder { color:var(--rule); }
 
-  /* ── HEADER BAND ── */
-  .header {
-    background: var(--ink);
-    color: var(--white);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    padding: 22px 32px 22px 32px;
-    gap: 16px;
-  }
-  .header-left .school {
-    font-size: 10px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.5);
-    margin-bottom: 4px;
-  }
-  .header-left .title {
-    font-family: 'Source Serif 4', serif;
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-  .header-left .subtitle {
-    font-size: 12px;
-    color: rgba(255,255,255,.6);
-    margin-top: 5px;
-    letter-spacing: .06em;
-  }
-  .header-right {
-    text-align: right;
-  }
-  .badge {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .06em;
-    padding: 6px 14px;
-    border-radius: 2px;
-  }
-  .header-right .meta {
-    font-size: 10px;
-    color: rgba(255,255,255,.4);
-    margin-top: 6px;
-    letter-spacing: .1em;
-  }
+  .body { padding:28px 32px 40px; }
 
-  /* ── META BAR ── */
-  .meta-bar {
-    border-bottom: 2px solid var(--ink);
-    padding: 12px 32px;
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-    background: var(--fill);
-  }
-  .meta-field {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-  .meta-field label {
-    font-size: 9px;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--faint);
-    font-weight: 600;
-  }
-  .meta-field input[type="text"] {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    border: none;
-    border-bottom: 1px solid var(--rule);
-    background: transparent;
-    color: var(--ink);
-    width: 160px;
-    padding: 2px 0 3px;
-    outline: none;
-  }
-  .meta-field input[type="text"]:focus { border-bottom-color: var(--accent2); }
-  .meta-field input[type="text"]::placeholder { color: var(--rule); }
+  .infobox { border-left:3px solid var(--accent2); background:#f0f6fd; padding:10px 14px; margin-bottom:28px; font-size:12.5px; color:var(--mid); line-height:1.6; }
+  .infobox strong { color:var(--ink); }
 
-  /* ── BODY ── */
-  .body { padding: 28px 32px 40px; }
+  .merksatz { background:var(--ink); color:var(--white); padding:16px 20px; margin-bottom:28px; border-radius:2px; }
+  .merksatz .mk-title { font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:8px; font-weight:600; }
+  .merksatz ul { list-style:none; font-size:13px; line-height:2; font-family:'DM Mono',monospace; color:#f0c060; }
+  .merksatz ul li::before { content:"▸ "; color:rgba(255,255,255,.3); }
 
-  /* ── INFOBOX ── */
-  .infobox {
-    border-left: 3px solid var(--accent2);
-    background: #f0f6fd;
-    padding: 10px 14px;
-    margin-bottom: 28px;
-    font-size: 12.5px;
-    color: var(--mid);
-    line-height: 1.6;
-  }
-  .infobox strong { color: var(--ink); }
+  .section { margin-bottom:32px; }
+  .section-head { display:flex; align-items:baseline; gap:10px; margin-bottom:16px; padding-bottom:6px; border-bottom:1.5px solid var(--ink); }
+  .section-num   { font-family:'Source Serif 4',serif; font-size:22px; font-weight:700; color:var(--accent); min-width:28px; }
+  .section-title { font-size:14px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+  .section-pts   { margin-left:auto; font-size:11px; color:var(--faint); font-family:'DM Mono',monospace; border:1px solid var(--rule); padding:2px 8px; border-radius:2px; }
 
-  /* ── SECTION ── */
-  .section { margin-bottom: 34px; }
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin-bottom: 14px;
-    padding-bottom: 6px;
-    border-bottom: 1.5px solid var(--ink);
-  }
-  .section-num {
-    font-family: 'Source Serif 4', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    min-width: 28px;
-  }
-  .section-title {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    color: var(--ink);
-  }
-  .section-pts {
-    margin-left: auto;
-    font-size: 11px;
-    color: var(--faint);
-    font-family: 'DM Mono', monospace;
-    border: 1px solid var(--rule);
-    padding: 2px 8px;
-    border-radius: 2px;
-  }
+  .aufgabe { margin-bottom:18px; padding-bottom:18px; border-bottom:1px dashed var(--rule); }
+  .aufgabe:last-child { border-bottom:none; margin-bottom:0; }
+  .aufgabe-text { font-size:13.5px; line-height:1.7; margin-bottom:10px; }
+  .aufgabe-text strong { color:var(--accent); }
+  .val { font-family:'DM Mono',monospace; font-weight:500; background:#f5f0e8; padding:1px 5px; border-radius:2px; font-size:13px; color:var(--gold); }
 
-  /* ── AUFGABE ── */
-  .aufgabe {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed var(--rule);
-  }
-  .aufgabe:last-child { border-bottom: none; margin-bottom: 0; }
+  .round-table { width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
+  .round-table th { background:var(--ink); color:var(--white); padding:7px 12px; text-align:left; font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; }
+  .round-table td { padding:8px 12px; border-bottom:1px solid var(--rule); vertical-align:middle; }
+  .round-table tr:nth-child(even) td { background:var(--fill); }
+  .round-table td.given { font-family:'DM Mono',monospace; color:var(--mid); }
+  .round-table td input { font-family:'DM Mono',monospace; font-size:13px; border:none; border-bottom:1px solid var(--rule); background:transparent; color:var(--ink); width:100%; padding:2px 0; outline:none; transition:.2s; }
+  .round-table td input:focus { border-bottom-color:var(--accent2); background:#f0f6fd; }
 
-  .aufgabe-text {
-    font-size: 13.5px;
-    line-height: 1.7;
-    margin-bottom: 10px;
-    color: var(--ink);
-  }
-  .aufgabe-text strong { color: var(--accent); }
+  .answer-area { margin-top:8px; }
+  .answer-row  { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .answer-label{ font-size:11px; color:var(--faint); font-weight:600; letter-spacing:.08em; min-width:180px; font-family:'DM Mono',monospace; }
+  .answer-input{ flex:1; border:none; border-bottom:1px solid var(--rule); background:transparent; font-family:'DM Mono',monospace; font-size:13px; color:var(--ink); padding:3px 4px; outline:none; transition:.2s; }
+  .answer-input:focus { border-bottom-color:var(--accent2); background:#f0f6fd; }
 
-  /* value highlight in task text */
-  .val {
-    font-family: 'DM Mono', monospace;
-    font-weight: 500;
-    background: #f5f0e8;
-    padding: 1px 5px;
-    border-radius: 2px;
-    font-size: 13px;
-    color: var(--gold);
-  }
+  .rw-label { font-size:9.5px; letter-spacing:.15em; text-transform:uppercase; color:var(--faint); font-weight:600; margin-top:10px; margin-bottom:3px; display:block; }
+  .rechenweg { min-height:64px; width:100%; background:var(--fill); border:1px solid var(--rule); border-radius:2px; padding:10px; font-family:'DM Mono',monospace; font-size:12.5px; color:var(--ink); resize:vertical; outline:none; line-height:1.7; }
+  .rechenweg:focus { border-color:var(--accent2); background:#f0f6fd; }
 
-  /* ── ANSWER LINES ── */
-  .answer-area {
-    margin-top: 8px;
-  }
-  .answer-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .answer-label {
-    font-size: 11px;
-    color: var(--faint);
-    font-weight: 600;
-    letter-spacing: .08em;
-    min-width: 80px;
-    font-family: 'DM Mono', monospace;
-  }
-  .answer-input {
-    flex: 1;
-    border: none;
-    border-bottom: 1px solid var(--rule);
-    background: transparent;
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--ink);
-    padding: 3px 4px;
-    outline: none;
-    transition: border-color .2s;
-  }
-  .answer-input:focus { border-bottom-color: var(--accent2); background: #f0f6fd; }
+  .ergebnis { border:2px solid var(--ink); display:flex; align-items:center; gap:12px; padding:10px 16px; margin-top:12px; transition:.3s; }
+  .ergebnis-label { font-size:10px; letter-spacing:.15em; text-transform:uppercase; font-weight:700; color:var(--mid); white-space:nowrap; }
+  .ergebnis input { font-family:'DM Mono',monospace; font-size:15px; font-weight:500; border:none; border-bottom:2px solid var(--accent); background:transparent; color:var(--accent); width:100%; padding:2px 4px; outline:none; transition:.2s; }
+  .ergebnis input:focus { background:#fdf0ee; }
 
-  .answer-block {
-    background: var(--fill);
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    padding: 10px 14px;
-    margin-top: 8px;
-  }
+  /* EVALUATION STATES */
+  input.correct { background:#eafaf1 !important; border-bottom-color:var(--ok) !important; color:var(--ok) !important; }
+  input.wrong   { background:#fdecea !important; border-bottom-color:var(--err) !important; color:var(--err) !important; }
+  .ergebnis.correct { border-color:var(--ok) !important; }
+  .ergebnis.wrong   { border-color:var(--err) !important; }
+  .hint { font-family:'DM Mono',monospace; font-size:11px; color:var(--err); margin-top:4px; display:none; padding-left:4px; }
+  .hint.show { display:block; }
 
-  /* ── RECHENWEG BOX ── */
-  .rechenweg {
-    min-height: 80px;
-    width: 100%;
-    background: var(--fill);
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    padding: 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12.5px;
-    color: var(--ink);
-    resize: vertical;
-    outline: none;
-    margin-top: 8px;
-    line-height: 1.7;
-  }
-  .rechenweg:focus { border-color: var(--accent2); background: #f0f6fd; }
-  .rechenweg-label {
-    font-size: 9.5px;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--faint);
-    font-weight: 600;
-    margin-top: 10px;
-    margin-bottom: 3px;
-    display: block;
-  }
+  /* AUSWERTEN */
+  .auswerten-wrap { text-align:center; padding:20px 32px 28px; }
+  .btn-auswerten { background:var(--ink); color:#fff; border:none; cursor:pointer; font-family:'Barlow',sans-serif; font-size:14px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:14px 48px; border-radius:2px; transition:.2s; }
+  .btn-auswerten:hover  { background:#2c2c4e; }
+  .btn-auswerten:active { transform:scale(.98); }
+  .btn-reset { background:transparent; color:var(--mid); border:1px solid var(--rule); cursor:pointer; font-family:'Barlow',sans-serif; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:10px 24px; border-radius:2px; margin-left:12px; transition:.2s; }
+  .btn-reset:hover { border-color:var(--mid); }
 
-  /* ── FORMULA CARD ── */
-  .formula-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .formula-card {
-    background: var(--ink);
-    color: var(--white);
-    padding: 12px 14px;
-    border-radius: 2px;
-  }
-  .formula-card .fc-label {
-    font-size: 9px;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.45);
-    margin-bottom: 5px;
-    font-weight: 600;
-  }
-  .formula-card .fc-formula {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: #f0c060;
-    line-height: 1.5;
-  }
+  /* FEEDBACK PANEL */
+  .feedback-panel { display:none; margin:0 32px 28px; border:2px solid var(--ink); overflow:hidden; }
+  .feedback-panel.visible { display:block; animation:slideIn .4s ease; }
+  @keyframes slideIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
-  /* ── TABLE ── */
-  .calc-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12.5px;
-    margin-top: 10px;
-  }
-  .calc-table th {
-    background: var(--ink);
-    color: var(--white);
-    padding: 7px 12px;
-    text-align: left;
-    font-size: 10px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  .calc-table td {
-    padding: 7px 12px;
-    border-bottom: 1px solid var(--rule);
-    vertical-align: middle;
-  }
-  .calc-table tr:nth-child(even) td { background: var(--fill); }
-  .calc-table td input {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    border: none;
-    border-bottom: 1px solid var(--rule);
-    background: transparent;
-    color: var(--ink);
-    width: 100%;
-    padding: 2px 0;
-    outline: none;
-  }
-  .calc-table td input:focus { border-bottom-color: var(--accent2); }
-  .calc-table td.given { color: var(--mid); font-family: 'DM Mono', monospace; }
-  .calc-table td.blank { background: #fafafa; }
+  .feedback-inner { display:grid; grid-template-columns:210px 1fr; }
 
-  /* ── ERGEBNIS BOX ── */
-  .ergebnis {
-    border: 2px solid var(--ink);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 16px;
-    margin-top: 12px;
-    background: var(--white);
-  }
-  .ergebnis-label {
-    font-size: 10px;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: var(--mid);
-    white-space: nowrap;
-  }
-  .ergebnis input {
-    font-family: 'DM Mono', monospace;
-    font-size: 15px;
-    font-weight: 500;
-    border: none;
-    border-bottom: 2px solid var(--accent);
-    background: transparent;
-    color: var(--accent);
-    width: 100%;
-    padding: 2px 4px;
-    outline: none;
-  }
-  .ergebnis input:focus { background: #fdf0ee; }
+  .pie-side { background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:28px 18px; gap:18px; }
+  .pie-wrap { position:relative; width:140px; height:140px; }
+  #pieChart { transform:rotate(-90deg); display:block; }
+  .pie-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none; }
+  .pie-pct { font-family:'Source Serif 4',serif; font-size:26px; font-weight:700; color:#fff; line-height:1; }
+  .pie-lbl { font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:3px; }
+  .pie-legend { width:100%; }
+  .legend-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:11px; color:rgba(255,255,255,.7); font-family:'DM Mono',monospace; }
+  .legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
 
-  /* ── PUNKTE LEISTE ── */
-  .punkte-leiste {
-    border-top: 2px solid var(--ink);
-    background: var(--ink);
-    color: var(--white);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 24px;
-    padding: 12px 32px;
-    font-size: 11px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-  .punkte-leiste span { color: rgba(255,255,255,.5); }
-  .punkte-leiste .pts-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .punkte-leiste input {
-    font-family: 'DM Mono', monospace;
-    font-size: 14px;
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.25);
-    color: #f0c060;
-    width: 56px;
-    text-align: center;
-    padding: 4px;
-    outline: none;
-    border-radius: 2px;
-  }
+  .feedback-text { padding:22px 24px; }
+  .fb-note { font-family:'Source Serif 4',serif; font-size:48px; font-weight:700; color:var(--accent); line-height:1; display:block; margin-bottom:2px; }
+  .fb-notetxt { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:12px; }
+  .fb-score { font-family:'DM Mono',monospace; font-size:12px; color:var(--mid); margin-bottom:12px; }
+  .fb-msg { font-size:13px; line-height:1.7; color:var(--mid); border-left:3px solid var(--rule); padding-left:12px; margin-bottom:16px; }
+  .fb-breakdown { width:100%; border-collapse:collapse; font-size:12px; }
+  .fb-breakdown th { background:var(--fill); padding:5px 10px; text-align:left; font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); font-weight:600; border-bottom:1px solid var(--rule); }
+  .fb-breakdown td { padding:5px 10px; border-bottom:1px solid var(--rule); font-family:'DM Mono',monospace; }
+  .fb-breakdown .ok  { color:var(--ok); font-weight:600; }
+  .fb-breakdown .bad { color:var(--err); font-weight:600; }
 
-  /* ── PRINT ── */
+  .punkte-leiste { border-top:2px solid var(--ink); background:var(--ink); color:var(--white); display:flex; justify-content:flex-end; align-items:center; gap:24px; padding:12px 32px; font-size:11px; letter-spacing:.1em; text-transform:uppercase; flex-wrap:wrap; }
+  .punkte-leiste span { color:rgba(255,255,255,.5); }
+  .punkte-leiste .pts-box { display:flex; align-items:center; gap:8px; }
+  .punkte-leiste input { font-family:'DM Mono',monospace; font-size:14px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); color:#f0c060; width:64px; text-align:center; padding:4px; outline:none; border-radius:2px; }
+
   @media print {
-    body { background: white; padding: 0; }
-    .page { box-shadow: none; max-width: 100%; }
-    .rechenweg { min-height: 70px; }
-    @page { size: A4; margin: 14mm 14mm 14mm 14mm; }
+    body { background:white; padding:0; }
+    .page { box-shadow:none; max-width:100%; }
+    .auswerten-wrap, .feedback-panel { display:none !important; }
+    @page { size:A4; margin:14mm; }
   }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- HEADER -->
   <div class="header">
-    <div class="header-left">
-      <div class="school">JAN unter eier  &nbsp;·&nbsp; AWL – Allgemeine Wirtschaftslehre</div>
-      <div class="title">Kaufmännisches Rechnen</div>
-      <div class="subtitle">Prozentrechnung &nbsp;·&nbsp; Mehrwertsteuer &nbsp;·&nbsp; Rabatt &amp; Skonto &nbsp;·&nbsp; Kalkulation</div>
+    <div>
+      <div class="school">LBS Hartberg &nbsp;·&nbsp; AWL – Allgemeine Wirtschaftslehre</div>
+      <div class="title">Runden von Zahlen</div>
+      <div class="sub">Kaufmännisches Rechnen – Grundlagen</div>
     </div>
     <div class="header-right">
       <div class="badge">1aTK</div>
@@ -421,377 +156,357 @@
     </div>
   </div>
 
-  <!-- META BAR -->
   <div class="meta-bar">
-    <div class="meta-field">
-      <label>Name</label>
-      <input type="text" placeholder="Vor- und Zuname">
-    </div>
-    <div class="meta-field">
-      <label>Datum</label>
-      <input type="text" placeholder="__.__.2025">
-    </div>
-    <div class="meta-field">
-      <label>Note</label>
-      <input type="text" placeholder="">
-    </div>
-    <div class="meta-field">
-      <label>Punkte</label>
-      <input type="text" placeholder="__ / 40">
-    </div>
+    <div class="meta-field"><label>Name</label><input type="text" placeholder="Vor- und Zuname"></div>
+    <div class="meta-field"><label>Datum</label><input type="text" placeholder="__.__.2025"></div>
+    <div class="meta-field"><label>Note</label><input id="noteField" type="text" placeholder="–" readonly></div>
+    <div class="meta-field"><label>Punkte</label><input id="pointsField" type="text" placeholder="– / 24" readonly></div>
   </div>
 
-  <!-- BODY -->
   <div class="body">
 
-    <!-- INFOBOX -->
     <div class="infobox">
       <strong>Hilfsmittel:</strong> Taschenrechner erlaubt &nbsp;|&nbsp;
-      <strong>Zeit:</strong> 50 Minuten &nbsp;|&nbsp;
-      <strong>Bewertung:</strong> Rechenweg und Ergebnis werden getrennt bewertet. Einheiten nicht vergessen!
+      <strong>Zeit:</strong> 30 Minuten &nbsp;|&nbsp;
+      <strong>Tipp:</strong> Schau immer auf die Stelle <em>nach</em> der Rundestelle – ist sie ≥ 5, wird aufgerundet, sonst abgerundet.
     </div>
 
-    <!-- ══════════════════════════════════════════
-         ABSCHNITT 1 – PROZENTRECHNUNG
-    ══════════════════════════════════════════ -->
-    <div class="section">
+    <div class="merksatz">
+      <div class="mk-title">Merksatz – Kaufmännisches Runden</div>
+      <ul>
+        <li>Nachfolgende Ziffer 0–4 &nbsp;→&nbsp; abrunden (Stelle bleibt)</li>
+        <li>Nachfolgende Ziffer 5–9 &nbsp;→&nbsp; aufrunden (Stelle +1)</li>
+        <li>Beim Runden auf ganze €: auf Cent-Stelle schauen</li>
+        <li>Beim Runden auf Cent: auf die 3. Dezimalstelle schauen</li>
+      </ul>
+    </div>
+
+    <!-- 1 -->
+    <div class="section" data-section="0">
       <div class="section-head">
         <span class="section-num">1</span>
-        <span class="section-title">Prozentrechnung – Grundlagen</span>
-        <span class="section-pts">10 Punkte</span>
+        <span class="section-title">Runden auf ganze Zahlen</span>
+        <span class="section-pts" id="pts0">– / 10</span>
       </div>
-
-      <!-- Formelkarten -->
-      <div class="formula-grid">
-        <div class="formula-card">
-          <div class="fc-label">Prozentwert (W)</div>
-          <div class="fc-formula">W = G × p / 100</div>
-        </div>
-        <div class="formula-card">
-          <div class="fc-label">Grundwert (G)</div>
-          <div class="fc-formula">G = W × 100 / p</div>
-        </div>
-        <div class="formula-card">
-          <div class="fc-label">Prozentsatz (p)</div>
-          <div class="fc-formula">p = W × 100 / G</div>
-        </div>
-      </div>
-
       <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>1a)</strong> Ein Smartphone kostet <span class="val">€ 840,–</span>.
-          Der Händler gewährt einem Stammkunden <span class="val">15 %</span> Rabatt.
-          Wie viel Euro Rabatt erhält der Kunde? Wie viel bezahlt er?
-        </div>
-        <span class="rechenweg-label">Rechenweg</span>
-        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
-        <div class="answer-area">
-          <div class="answer-row">
-            <span class="answer-label">Rabatt (€)</span>
-            <input type="text" class="answer-input" placeholder="…">
-          </div>
-          <div class="answer-row">
-            <span class="answer-label">Preis nach Rabatt</span>
-            <input type="text" class="answer-input" placeholder="…">
-          </div>
-        </div>
+        <div class="aufgabe-text"><strong>1a)</strong> Runde auf <strong>ganze Zahlen (Einer)</strong>:</div>
+        <table class="round-table">
+          <thead><tr><th>Zahl</th><th>Gerundet auf Einer</th><th style="width:140px">Hinweis</th></tr></thead>
+          <tbody>
+            <tr><td class="given">17,3</td>   <td><input class="ans" data-answer="17"   type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">84,7</td>   <td><input class="ans" data-answer="85"   type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">5,5</td>    <td><input class="ans" data-answer="6"    type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">102,49</td> <td><input class="ans" data-answer="102"  type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">39,501</td> <td><input class="ans" data-answer="40"   type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+          </tbody>
+        </table>
       </div>
-
       <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>1b)</strong> Von <span class="val">320 Geräten</span> im Lager sind
-          <span class="val">48 Geräte</span> defekt. Wie hoch ist der Prozentsatz der defekten Geräte?
-        </div>
-        <span class="rechenweg-label">Rechenweg</span>
-        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
-        <div class="ergebnis">
-          <span class="ergebnis-label">Ergebnis</span>
-          <input type="text" placeholder="p = … %">
-        </div>
-      </div>
-
-      <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>1c)</strong> <span class="val">12 %</span> eines Warenbestands entsprechen
-          <span class="val">€ 2.880,–</span>. Wie hoch ist der gesamte Warenbestand?
-        </div>
-        <span class="rechenweg-label">Rechenweg</span>
-        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
-        <div class="ergebnis">
-          <span class="ergebnis-label">Ergebnis</span>
-          <input type="text" placeholder="G = € …">
-        </div>
+        <div class="aufgabe-text"><strong>1b)</strong> Runde auf <strong>Zehner</strong>:</div>
+        <table class="round-table">
+          <thead><tr><th>Zahl</th><th>Gerundet auf Zehner</th><th style="width:140px">Hinweis</th></tr></thead>
+          <tbody>
+            <tr><td class="given">63</td>    <td><input class="ans" data-answer="60"   type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">145</td>   <td><input class="ans" data-answer="150"  type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">278</td>   <td><input class="ans" data-answer="280"  type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">995</td>   <td><input class="ans" data-answer="1000" type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">3.452</td> <td><input class="ans" data-answer="3450" type="text" placeholder="…"></td><td><span class="hint"></span></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         ABSCHNITT 2 – MEHRWERTSTEUER
-    ══════════════════════════════════════════ -->
-    <div class="section">
+    <!-- 2 -->
+    <div class="section" data-section="1">
       <div class="section-head">
         <span class="section-num">2</span>
-        <span class="section-title">Mehrwertsteuer (MwSt.)</span>
-        <span class="section-pts">10 Punkte</span>
+        <span class="section-title">Runden auf Cent (2 Dezimalstellen)</span>
+        <span class="section-pts" id="pts1">– / 10</span>
       </div>
-
-      <div class="formula-grid">
-        <div class="formula-card">
-          <div class="fc-label">Bruttobetrag</div>
-          <div class="fc-formula">Br = Ne × 1,20</div>
-        </div>
-        <div class="formula-card">
-          <div class="fc-label">Nettobetrag</div>
-          <div class="fc-formula">Ne = Br / 1,20</div>
-        </div>
-        <div class="formula-card">
-          <div class="fc-label">MwSt.-Betrag</div>
-          <div class="fc-formula">MwSt = Br − Ne</div>
-        </div>
-      </div>
-
       <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>2a)</strong> Ein Handy-Vertrag kostet netto <span class="val">€ 29,90</span> pro Monat.
-          Berechne den Bruttobetrag inkl. <span class="val">20 % MwSt.</span> sowie den absoluten MwSt.-Betrag.
-        </div>
-        <span class="rechenweg-label">Rechenweg</span>
-        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
-        <div class="answer-area">
-          <div class="answer-row">
-            <span class="answer-label">MwSt. (€)</span>
-            <input type="text" class="answer-input" placeholder="…">
-          </div>
-          <div class="answer-row">
-            <span class="answer-label">Brutto (€)</span>
-            <input type="text" class="answer-input" placeholder="…">
-          </div>
-        </div>
-      </div>
-
-      <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>2b)</strong> Eine Rechnung weist einen Bruttobetrag von <span class="val">€ 1.188,–</span>
-          aus (<span class="val">20 % MwSt.</span>). Berechne den Nettobetrag und den enthaltenen MwSt.-Betrag.
-        </div>
-        <span class="rechenweg-label">Rechenweg</span>
-        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
-        <div class="answer-area">
-          <div class="answer-row">
-            <span class="answer-label">Netto (€)</span>
-            <input type="text" class="answer-input" placeholder="…">
-          </div>
-          <div class="answer-row">
-            <span class="answer-label">MwSt.-Betrag (€)</span>
-            <input type="text" class="answer-input" placeholder="…">
-          </div>
-        </div>
-      </div>
-
-      <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>2c)</strong> Ergänze die folgende Tabelle vollständig:
-        </div>
-        <table class="calc-table">
-          <thead>
-            <tr>
-              <th>Artikel</th>
-              <th>Netto (€)</th>
-              <th>MwSt.-Satz</th>
-              <th>MwSt.-Betrag (€)</th>
-              <th>Brutto (€)</th>
-            </tr>
-          </thead>
+        <div class="aufgabe-text"><strong>2a)</strong> Runde auf <strong>2 Dezimalstellen</strong>:</div>
+        <table class="round-table">
+          <thead><tr><th>Betrag (€)</th><th>Gerundet auf Cent</th><th style="width:140px">Hinweis</th></tr></thead>
           <tbody>
-            <tr>
-              <td class="given">USB-Ladekabel</td>
-              <td class="given">8,30</td>
-              <td class="given">20 %</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-            </tr>
-            <tr>
-              <td class="given">Bluetooth-Box</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-              <td class="given">20 %</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-              <td class="given">95,40</td>
-            </tr>
-            <tr>
-              <td class="given">SIM-Karte</td>
-              <td class="given">4,17</td>
-              <td class="given">20 %</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-            </tr>
+            <tr><td class="given">€ 12,344</td> <td><input class="ans" data-answer="12.34"  type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">€ 7,895</td>  <td><input class="ans" data-answer="7.90"   type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">€ 0,1250</td> <td><input class="ans" data-answer="0.13"   type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">€ 99,999</td> <td><input class="ans" data-answer="100.00" type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">€ 3,1449</td> <td><input class="ans" data-answer="3.14"   type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="aufgabe">
+        <div class="aufgabe-text"><strong>2b)</strong> Runde die Ergebnisse auf 2 Dezimalstellen:</div>
+        <table class="round-table">
+          <thead><tr><th>Rechnung</th><th>Exaktes Ergebnis</th><th>Gerundet (€)</th><th style="width:140px">Hinweis</th></tr></thead>
+          <tbody>
+            <tr><td class="given">€ 15,00 ÷ 3</td>   <td class="given">5,000…</td>   <td><input class="ans" data-answer="5.00"  type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">€ 10,00 ÷ 3</td>   <td class="given">3,3333…</td>  <td><input class="ans" data-answer="3.33"  type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">€ 1,00 ÷ 7</td>    <td class="given">0,14285…</td> <td><input class="ans" data-answer="0.14"  type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">€ 22,00 × 1,20</td><td class="given">26,400</td>   <td><input class="ans" data-answer="26.40" type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
+            <tr><td class="given">€ 5,99 × 3</td>    <td class="given">17,970</td>   <td><input class="ans" data-answer="17.97" type="text" placeholder="€ …"></td><td><span class="hint"></span></td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         ABSCHNITT 3 – RABATT & SKONTO
-    ══════════════════════════════════════════ -->
-    <div class="section">
+    <!-- 3 -->
+    <div class="section" data-section="2">
       <div class="section-head">
         <span class="section-num">3</span>
-        <span class="section-title">Rabatt &amp; Skonto</span>
-        <span class="section-pts">10 Punkte</span>
-      </div>
-
-      <div class="formula-grid">
-        <div class="formula-card">
-          <div class="fc-label">Zielbetrag</div>
-          <div class="fc-formula">Z = LP × (1 − r/100)</div>
-        </div>
-        <div class="formula-card">
-          <div class="fc-label">Skontobetrag</div>
-          <div class="fc-formula">Sk = Z × s / 100</div>
-        </div>
-        <div class="formula-card">
-          <div class="fc-label">Zahlbetrag</div>
-          <div class="fc-formula">Za = Z − Sk</div>
-        </div>
+        <span class="section-title">Praxisaufgaben</span>
+        <span class="section-pts" id="pts2">– / 4</span>
       </div>
 
       <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>3a)</strong> Listenpreis eines Tablets: <span class="val">€ 540,–</span>.
-          Der Händler gewährt <span class="val">10 % Händlerrabatt</span>.
-          Bei Zahlung innerhalb von 10 Tagen wird zusätzlich <span class="val">2 % Skonto</span> abgezogen.
-          Berechne: Zielbetrag, Skontobetrag, Zahlbetrag.
+        <div class="aufgabe-text"><strong>3a)</strong> Ein Handy kostet <span class="val">€ 189,–</span>. Der Händler teilt auf <span class="val">3 Monatsraten</span> auf. Wie hoch ist eine Rate (auf Cent gerundet)?</div>
+        <span class="rw-label">Rechenweg</span>
+        <textarea class="rechenweg" placeholder="189 ÷ 3 = …"></textarea>
+        <div class="ergebnis" id="erg0">
+          <span class="ergebnis-label">Rate</span>
+          <input class="ans" data-answer="63.00" type="text" placeholder="€ …">
         </div>
-        <span class="rechenweg-label">Rechenweg</span>
-        <textarea class="rechenweg" style="min-height:100px;" placeholder="Schritt 1: Rabatt …
-Schritt 2: Zielbetrag …
-Schritt 3: Skonto …
-Schritt 4: Zahlbetrag …"></textarea>
-        <div class="answer-area">
-          <div class="answer-row">
-            <span class="answer-label">Zielbetrag</span>
-            <input type="text" class="answer-input" placeholder="€ …">
-          </div>
-          <div class="answer-row">
-            <span class="answer-label">Skontobetrag</span>
-            <input type="text" class="answer-input" placeholder="€ …">
-          </div>
-          <div class="answer-row">
-            <span class="answer-label">Zahlbetrag</span>
-            <input type="text" class="answer-input" placeholder="€ …">
-          </div>
-        </div>
+        <span class="hint" id="hintp0"></span>
       </div>
 
       <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>3b)</strong> Ein Telekommunikationsunternehmen kauft <span class="val">50 Router</span>
-          zum Stückpreis von <span class="val">€ 78,–</span> (netto). Es wird ein Mengenrabatt von
-          <span class="val">8 %</span> gewährt. Wie hoch ist die Rechnungssumme nach Rabatt (netto)?
-          Wie hoch ist der Gesamtbetrag inkl. 20 % MwSt.?
+        <div class="aufgabe-text"><strong>3b)</strong> <span class="val">7 SIM-Karten</span> kosten <span class="val">€ 20,–</span>. Wie viel kostet eine SIM-Karte (auf Cent gerundet)?</div>
+        <span class="rw-label">Rechenweg</span>
+        <textarea class="rechenweg" placeholder="20 ÷ 7 = …"></textarea>
+        <div class="ergebnis" id="erg1">
+          <span class="ergebnis-label">Stückpreis</span>
+          <input class="ans" data-answer="2.86" type="text" placeholder="€ …">
         </div>
-        <span class="rechenweg-label">Rechenweg</span>
-        <textarea class="rechenweg" style="min-height:100px;" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
+        <span class="hint" id="hintp1"></span>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text"><strong>3c)</strong> Pro Minute: <span class="val">€ 0,089</span>. Gespräch: <span class="val">14 Minuten</span>. Gesamtpreis auf Cent gerundet?</div>
+        <span class="rw-label">Rechenweg</span>
+        <textarea class="rechenweg" placeholder="0,089 × 14 = …"></textarea>
+        <div class="ergebnis" id="erg2">
+          <span class="ergebnis-label">Gesprächspreis</span>
+          <input class="ans" data-answer="1.25" type="text" placeholder="€ …">
+        </div>
+        <span class="hint" id="hintp2"></span>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text"><strong>3d)</strong> Lagerbestand <span class="val">1.234 Geräte</span> → auf <strong>Hunderter</strong> runden.</div>
         <div class="answer-area">
           <div class="answer-row">
-            <span class="answer-label">Netto nach Rabatt</span>
-            <input type="text" class="answer-input" placeholder="€ …">
+            <span class="answer-label">Gerundet auf Hunderter</span>
+            <input class="ans answer-input" data-answer="1200" type="text" placeholder="…">
           </div>
-          <div class="answer-row">
-            <span class="answer-label">Brutto inkl. MwSt.</span>
-            <input type="text" class="answer-input" placeholder="€ …">
-          </div>
+          <span class="hint" id="hintp3"></span>
         </div>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         ABSCHNITT 4 – HANDELSKALKULATION
-    ══════════════════════════════════════════ -->
-    <div class="section">
-      <div class="section-head">
-        <span class="section-num">4</span>
-        <span class="section-title">Einfache Handelskalkulation</span>
-        <span class="section-pts">10 Punkte</span>
-      </div>
+  </div>
 
-      <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>4a)</strong> Berechne den Verkaufspreis (brutto) anhand folgender Daten:
+  <!-- BUTTON -->
+  <div class="auswerten-wrap">
+    <button class="btn-auswerten" onclick="auswerten()">✓ &nbsp;Auswerten</button>
+    <button class="btn-reset" onclick="resetAll()">↺ &nbsp;Zurücksetzen</button>
+  </div>
+
+  <!-- FEEDBACK -->
+  <div class="feedback-panel" id="feedbackPanel">
+    <div class="feedback-inner">
+      <div class="pie-side">
+        <div class="pie-wrap">
+          <svg id="pieChart" width="140" height="140" viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="54" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="22"/>
+            <circle id="pieEmpty"   cx="70" cy="70" r="54" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="22" stroke-dasharray="0 339.3" stroke-dashoffset="0"/>
+            <circle id="pieWrong"   cx="70" cy="70" r="54" fill="none" stroke="#e74c3c" stroke-width="22" stroke-dasharray="0 339.3" stroke-dashoffset="0"/>
+            <circle id="pieCorrect" cx="70" cy="70" r="54" fill="none" stroke="#27ae60" stroke-width="22" stroke-dasharray="0 339.3" stroke-dashoffset="0"/>
+          </svg>
+          <div class="pie-center">
+            <span class="pie-pct" id="piePct">–</span>
+            <span class="pie-lbl">richtig</span>
+          </div>
         </div>
-
-        <table class="calc-table" style="margin-bottom:14px;">
-          <thead>
-            <tr><th>Position</th><th style="width:200px">Betrag (€)</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="given">Einkaufspreis (netto)</td>
-              <td class="given">210,00</td>
-            </tr>
-            <tr>
-              <td class="given">+ Bezugskosten (Fracht)</td>
-              <td class="given">12,50</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600">= Einstandspreis</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-            </tr>
-            <tr>
-              <td class="given">+ Handlungskosten (25 % vom Einstandspreis)</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-            </tr>
-            <tr>
-              <td style="font-weight:600">= Selbstkostenpreis</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-            </tr>
-            <tr>
-              <td class="given">+ Gewinnaufschlag (15 % vom Selbstkostenpreis)</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-            </tr>
-            <tr>
-              <td style="font-weight:600">= Nettoverkaufspreis</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-            </tr>
-            <tr>
-              <td class="given">+ MwSt. 20 %</td>
-              <td class="blank"><input type="text" placeholder="…"></td>
-            </tr>
-            <tr>
-              <td style="font-weight:700; color:#c0392b;">= Bruttoverkaufspreis</td>
-              <td class="blank"><input type="text" placeholder="€ …" style="font-weight:700; color:#c0392b;"></td>
-            </tr>
-          </tbody>
+        <div class="pie-legend">
+          <div class="legend-row"><span class="legend-dot" style="background:#27ae60"></span><span id="lgCorrect">0 Richtig</span></div>
+          <div class="legend-row"><span class="legend-dot" style="background:#e74c3c"></span><span id="lgWrong">0 Falsch</span></div>
+          <div class="legend-row"><span class="legend-dot" style="background:rgba(255,255,255,.18)"></span><span id="lgEmpty">0 Leer</span></div>
+        </div>
+      </div>
+      <div class="feedback-text">
+        <span class="fb-note" id="fbNote">–</span>
+        <div class="fb-notetxt" id="fbNoteTxt"></div>
+        <div class="fb-score" id="fbScore"></div>
+        <div class="fb-msg" id="fbMsg"></div>
+        <table class="fb-breakdown">
+          <thead><tr><th>Abschnitt</th><th>Richtig</th><th>Gesamt</th><th>%</th></tr></thead>
+          <tbody id="fbBreakdown"></tbody>
         </table>
       </div>
-
-      <div class="aufgabe">
-        <div class="aufgabe-text">
-          <strong>4b)</strong> Der Nettoverkaufspreis eines Mobiltelefons beträgt
-          <span class="val">€ 345,–</span>. Der Einkaufspreis (netto) war <span class="val">€ 240,–</span>.
-          Berechne den prozentualen Aufschlag (Handelsspanne in %).
-        </div>
-        <span class="rechenweg-label">Rechenweg</span>
-        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
-        <div class="ergebnis">
-          <span class="ergebnis-label">Ergebnis</span>
-          <input type="text" placeholder="Handelsspanne = … %">
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /body -->
-
-  <!-- PUNKTE LEISTE -->
-  <div class="punkte-leiste">
-    <span>Punkte</span>
-    <div class="pts-box">AB 1 <input type="text" placeholder="/ 10"></div>
-    <div class="pts-box">AB 2 <input type="text" placeholder="/ 10"></div>
-    <div class="pts-box">AB 3 <input type="text" placeholder="/ 10"></div>
-    <div class="pts-box">AB 4 <input type="text" placeholder="/ 10"></div>
-    <div class="pts-box" style="border-left:1px solid rgba(255,255,255,.2); padding-left:24px;">
-      Gesamt <input type="text" placeholder="/ 40" style="color:#fff; font-weight:700;">
     </div>
   </div>
 
-</div><!-- /page -->
+  <div class="punkte-leiste">
+    <span>Punkte</span>
+    <div class="pts-box">AB 1 <input type="text" id="pl0" placeholder="/ 10"></div>
+    <div class="pts-box">AB 2 <input type="text" id="pl1" placeholder="/ 10"></div>
+    <div class="pts-box">AB 3 <input type="text" id="pl2" placeholder="/ 4"></div>
+    <div class="pts-box" style="border-left:1px solid rgba(255,255,255,.2);padding-left:24px;">
+      Gesamt <input type="text" id="plTotal" placeholder="/ 24" style="color:#fff;font-weight:700;">
+    </div>
+  </div>
+
+</div>
+
+<script>
+const CIRC = 2 * Math.PI * 54;
+
+function norm(v) {
+  return v.trim().replace(/€/g,'').replace(/\s/g,'').replace(/,/g,'.');
+}
+function check(userVal, answer) {
+  const u = norm(userVal);
+  if (u === '') return null;
+  const uN = parseFloat(u), aN = parseFloat(String(answer).replace(',','.'));
+  if (isNaN(uN)) return false;
+  return Math.abs(uN - aN) <= 0.005;
+}
+function fmt(a) {
+  const n = parseFloat(String(a).replace(',','.'));
+  if (Number.isInteger(n)) return String(n);
+  return n.toFixed(2).replace('.',',');
+}
+
+function auswerten() {
+  const sections = document.querySelectorAll('.section');
+  let totC=0, totW=0, totE=0;
+  const secRes = [];
+
+  // Section 3 ergebnis hints by index
+  const ergIds   = ['erg0','erg1','erg2'];
+  const hintPIds = ['hintp0','hintp1','hintp2','hintp3'];
+
+  sections.forEach((sec, si) => {
+    const inputs = Array.from(sec.querySelectorAll('input.ans'));
+    let sc=0, sw=0, se=0;
+
+    inputs.forEach((inp, ii) => {
+      const result = check(inp.value, inp.dataset.answer);
+      inp.classList.remove('correct','wrong');
+
+      // find hint: either next td > span, or special praxis hints
+      let hintEl = null;
+      const nextTd = inp.closest('td') ? inp.closest('tr').querySelector('td:last-child span.hint') : null;
+      if (nextTd) hintEl = nextTd;
+
+      // For ergebnis inputs in section 3
+      const ergParent = inp.closest('.ergebnis');
+      if (ergParent) {
+        ergParent.classList.remove('correct','wrong');
+        // find hint after ergebnis div
+        hintEl = ergParent.nextElementSibling && ergParent.nextElementSibling.classList.contains('hint')
+          ? ergParent.nextElementSibling : null;
+      }
+      // For standalone answer-input in section 3
+      const ansRow = inp.closest('.answer-area');
+      if (ansRow) {
+        hintEl = ansRow.querySelector('.hint');
+      }
+
+      if (result === null) {
+        se++;
+        if (hintEl) { hintEl.textContent=''; hintEl.classList.remove('show'); }
+      } else if (result) {
+        sc++;
+        inp.classList.add('correct');
+        if (ergParent) ergParent.classList.add('correct');
+        if (hintEl) { hintEl.textContent=''; hintEl.classList.remove('show'); }
+      } else {
+        sw++;
+        inp.classList.add('wrong');
+        if (ergParent) ergParent.classList.add('wrong');
+        if (hintEl) { hintEl.textContent='✗ Richtig: '+fmt(inp.dataset.answer); hintEl.classList.add('show'); }
+      }
+    });
+
+    totC+=sc; totW+=sw; totE+=se;
+    secRes.push({label:`Abschnitt ${si+1}`, sc, sw, se, total:inputs.length});
+  });
+
+  const total = totC+totW+totE;
+  const answered = totC+totW;
+  const pct = answered>0 ? Math.round((totC/total)*100) : 0;
+
+  // Pie chart
+  const cLen = (totC/total)*CIRC;
+  const wLen = (totW/total)*CIRC;
+  const eLen = (totE/total)*CIRC;
+  document.getElementById('pieCorrect').style.strokeDasharray = `${cLen} ${CIRC-cLen}`;
+  document.getElementById('pieCorrect').style.strokeDashoffset = `${-(wLen+eLen)}`;
+  document.getElementById('pieWrong').style.strokeDasharray   = `${wLen} ${CIRC-wLen}`;
+  document.getElementById('pieWrong').style.strokeDashoffset  = `-${eLen}`;
+  document.getElementById('pieEmpty').style.strokeDasharray   = `${eLen} ${CIRC-eLen}`;
+  document.getElementById('pieEmpty').style.strokeDashoffset  = `0`;
+
+  document.getElementById('piePct').textContent    = pct+'%';
+  document.getElementById('lgCorrect').textContent = totC+' Richtig';
+  document.getElementById('lgWrong').textContent   = totW+' Falsch';
+  document.getElementById('lgEmpty').textContent   = totE+' Leer';
+
+  // Grade
+  let note, notetxt, msg;
+  if      (pct>=88){note='1';notetxt='Sehr Gut';       msg='Ausgezeichnet! Du hast die Rundeaufgaben sehr sicher gemeistert.';}
+  else if (pct>=75){note='2';notetxt='Gut';             msg='Gut gemacht! Ein paar kleine Unsicherheiten, aber insgesamt sehr solide.';}
+  else if (pct>=63){note='3';notetxt='Befriedigend';    msg='Du kennst die Grundregeln, aber übe nochmals die Sonderfälle (z.B. 5,5 → 6 oder 99,999 → 100,00).';}
+  else if (pct>=50){note='4';notetxt='Genügend';        msg='Knapp bestanden. Bitte wiederhole den Merksatz und mach weitere Übungsbeispiele.';}
+  else             {note='5';notetxt='Nicht Genügend';  msg='Leider nicht bestanden. Geh nochmals zum Merksatz zurück und übe Schritt für Schritt.';}
+
+  document.getElementById('fbNote').textContent    = note;
+  document.getElementById('fbNoteTxt').textContent = notetxt;
+  document.getElementById('fbScore').textContent   = `${totC} von ${total} Antworten richtig (${totE} nicht beantwortet)`;
+  document.getElementById('fbMsg').textContent     = msg;
+
+  const tbody = document.getElementById('fbBreakdown');
+  tbody.innerHTML = '';
+  secRes.forEach(r => {
+    const rp = r.total>0 ? Math.round((r.sc/r.total)*100) : 0;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r.label}</td>
+      <td class="${r.sc===r.total?'ok':r.sc<r.total/2?'bad':''}">${r.sc}</td>
+      <td>${r.total}</td>
+      <td class="${rp>=75?'ok':rp<50?'bad':''}">${rp} %</td>`;
+    tbody.appendChild(tr);
+    // update section pts
+    document.getElementById(`pts${r.label.slice(-1)-1}`).textContent = `${r.sc} / ${r.total}`;
+    document.getElementById(`pl${r.label.slice(-1)-1}`).value = `${r.sc} / ${r.total}`;
+  });
+
+  document.getElementById('noteField').value   = note;
+  document.getElementById('pointsField').value = `${totC} / ${total}`;
+  document.getElementById('plTotal').value     = `${totC} / ${total}`;
+
+  const panel = document.getElementById('feedbackPanel');
+  panel.classList.add('visible');
+  setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+}
+
+function resetAll() {
+  document.querySelectorAll('input.ans').forEach(inp => {
+    inp.value='';
+    inp.classList.remove('correct','wrong');
+    const e = inp.closest('.ergebnis');
+    if(e) e.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.hint').forEach(h=>{h.textContent='';h.classList.remove('show');});
+  document.getElementById('feedbackPanel').classList.remove('visible');
+  document.getElementById('noteField').value='';
+  document.getElementById('pointsField').value='';
+  ['pl0','pl1','pl2','plTotal'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('pts0').textContent='– / 10';
+  document.getElementById('pts1').textContent='– / 10';
+  document.getElementById('pts2').textContent='– / 4';
+}
+</script>
 </body>
 </html>
