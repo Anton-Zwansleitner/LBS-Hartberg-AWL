@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arbeitsblatt – Kaufmännisches Rechnen | 1aTK</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Barlow:wght@400;500;600;700&display=swap');
+
+  :root {
+    --ink:       #1a1a2e;
+    --mid:       #4a4a6a;
+    --faint:     #9898b8;
+    --rule:      #d4d4e8;
+    --accent:    #c0392b;
+    --accent2:   #2980b9;
+    --fill:      #f7f7fb;
+    --white:     #ffffff;
+    --gold:      #b8860b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: #eeeef5;
+    color: var(--ink);
+    padding: 24px 16px 48px;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 794px;
+    margin: 0 auto;
+    background: var(--white);
+    box-shadow: 0 4px 32px rgba(0,0,0,.12);
+  }
+
+  /* ── HEADER BAND ── */
+  .header {
+    background: var(--ink);
+    color: var(--white);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 22px 32px 22px 32px;
+    gap: 16px;
+  }
+  .header-left .school {
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 4px;
+  }
+  .header-left .title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .header-left .subtitle {
+    font-size: 12px;
+    color: rgba(255,255,255,.6);
+    margin-top: 5px;
+    letter-spacing: .06em;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+  .header-right .meta {
+    font-size: 10px;
+    color: rgba(255,255,255,.4);
+    margin-top: 6px;
+    letter-spacing: .1em;
+  }
+
+  /* ── META BAR ── */
+  .meta-bar {
+    border-bottom: 2px solid var(--ink);
+    padding: 12px 32px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    background: var(--fill);
+  }
+  .meta-field {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .meta-field label {
+    font-size: 9px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--faint);
+    font-weight: 600;
+  }
+  .meta-field input[type="text"] {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink);
+    width: 160px;
+    padding: 2px 0 3px;
+    outline: none;
+  }
+  .meta-field input[type="text"]:focus { border-bottom-color: var(--accent2); }
+  .meta-field input[type="text"]::placeholder { color: var(--rule); }
+
+  /* ── BODY ── */
+  .body { padding: 28px 32px 40px; }
+
+  /* ── INFOBOX ── */
+  .infobox {
+    border-left: 3px solid var(--accent2);
+    background: #f0f6fd;
+    padding: 10px 14px;
+    margin-bottom: 28px;
+    font-size: 12.5px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+  .infobox strong { color: var(--ink); }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 34px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .section-num {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    min-width: 28px;
+  }
+  .section-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .section-pts {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--faint);
+    font-family: 'DM Mono', monospace;
+    border: 1px solid var(--rule);
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+
+  /* ── AUFGABE ── */
+  .aufgabe {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .aufgabe:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .aufgabe-text {
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .aufgabe-text strong { color: var(--accent); }
+
+  /* value highlight in task text */
+  .val {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    background: #f5f0e8;
+    padding: 1px 5px;
+    border-radius: 2px;
+    font-size: 13px;
+    color: var(--gold);
+  }
+
+  /* ── ANSWER LINES ── */
+  .answer-area {
+    margin-top: 8px;
+  }
+  .answer-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .answer-label {
+    font-size: 11px;
+    color: var(--faint);
+    font-weight: 600;
+    letter-spacing: .08em;
+    min-width: 80px;
+    font-family: 'DM Mono', monospace;
+  }
+  .answer-input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    padding: 3px 4px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .answer-input:focus { border-bottom-color: var(--accent2); background: #f0f6fd; }
+
+  .answer-block {
+    background: var(--fill);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 10px 14px;
+    margin-top: 8px;
+  }
+
+  /* ── RECHENWEG BOX ── */
+  .rechenweg {
+    min-height: 80px;
+    width: 100%;
+    background: var(--fill);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink);
+    resize: vertical;
+    outline: none;
+    margin-top: 8px;
+    line-height: 1.7;
+  }
+  .rechenweg:focus { border-color: var(--accent2); background: #f0f6fd; }
+  .rechenweg-label {
+    font-size: 9.5px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--faint);
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    display: block;
+  }
+
+  /* ── FORMULA CARD ── */
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .formula-card {
+    background: var(--ink);
+    color: var(--white);
+    padding: 12px 14px;
+    border-radius: 2px;
+  }
+  .formula-card .fc-label {
+    font-size: 9px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.45);
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  .formula-card .fc-formula {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: #f0c060;
+    line-height: 1.5;
+  }
+
+  /* ── TABLE ── */
+  .calc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-top: 10px;
+  }
+  .calc-table th {
+    background: var(--ink);
+    color: var(--white);
+    padding: 7px 12px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .calc-table td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: middle;
+  }
+  .calc-table tr:nth-child(even) td { background: var(--fill); }
+  .calc-table td input {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink);
+    width: 100%;
+    padding: 2px 0;
+    outline: none;
+  }
+  .calc-table td input:focus { border-bottom-color: var(--accent2); }
+  .calc-table td.given { color: var(--mid); font-family: 'DM Mono', monospace; }
+  .calc-table td.blank { background: #fafafa; }
+
+  /* ── ERGEBNIS BOX ── */
+  .ergebnis {
+    border: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    margin-top: 12px;
+    background: var(--white);
+  }
+  .ergebnis-label {
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--mid);
+    white-space: nowrap;
+  }
+  .ergebnis input {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-bottom: 2px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    width: 100%;
+    padding: 2px 4px;
+    outline: none;
+  }
+  .ergebnis input:focus { background: #fdf0ee; }
+
+  /* ── PUNKTE LEISTE ── */
+  .punkte-leiste {
+    border-top: 2px solid var(--ink);
+    background: var(--ink);
+    color: var(--white);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+    padding: 12px 32px;
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .punkte-leiste span { color: rgba(255,255,255,.5); }
+  .punkte-leiste .pts-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .punkte-leiste input {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.25);
+    color: #f0c060;
+    width: 56px;
+    text-align: center;
+    padding: 4px;
+    outline: none;
+    border-radius: 2px;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; max-width: 100%; }
+    .rechenweg { min-height: 70px; }
+    @page { size: A4; margin: 14mm 14mm 14mm 14mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="school">LBS Hartberg &nbsp;·&nbsp; AWL – Allgemeine Wirtschaftslehre</div>
+      <div class="title">Kaufmännisches Rechnen</div>
+      <div class="subtitle">Prozentrechnung &nbsp;·&nbsp; Mehrwertsteuer &nbsp;·&nbsp; Rabatt &amp; Skonto &nbsp;·&nbsp; Kalkulation</div>
+    </div>
+    <div class="header-right">
+      <div class="badge">1aTK</div>
+      <div class="meta">Schuljahr 2025/26</div>
+    </div>
+  </div>
+
+  <!-- META BAR -->
+  <div class="meta-bar">
+    <div class="meta-field">
+      <label>Name</label>
+      <input type="text" placeholder="Vor- und Zuname">
+    </div>
+    <div class="meta-field">
+      <label>Datum</label>
+      <input type="text" placeholder="__.__.2025">
+    </div>
+    <div class="meta-field">
+      <label>Note</label>
+      <input type="text" placeholder="">
+    </div>
+    <div class="meta-field">
+      <label>Punkte</label>
+      <input type="text" placeholder="__ / 40">
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- INFOBOX -->
+    <div class="infobox">
+      <strong>Hilfsmittel:</strong> Taschenrechner erlaubt &nbsp;|&nbsp;
+      <strong>Zeit:</strong> 50 Minuten &nbsp;|&nbsp;
+      <strong>Bewertung:</strong> Rechenweg und Ergebnis werden getrennt bewertet. Einheiten nicht vergessen!
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         ABSCHNITT 1 – PROZENTRECHNUNG
+    ══════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">1</span>
+        <span class="section-title">Prozentrechnung – Grundlagen</span>
+        <span class="section-pts">10 Punkte</span>
+      </div>
+
+      <!-- Formelkarten -->
+      <div class="formula-grid">
+        <div class="formula-card">
+          <div class="fc-label">Prozentwert (W)</div>
+          <div class="fc-formula">W = G × p / 100</div>
+        </div>
+        <div class="formula-card">
+          <div class="fc-label">Grundwert (G)</div>
+          <div class="fc-formula">G = W × 100 / p</div>
+        </div>
+        <div class="formula-card">
+          <div class="fc-label">Prozentsatz (p)</div>
+          <div class="fc-formula">p = W × 100 / G</div>
+        </div>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>1a)</strong> Ein Smartphone kostet <span class="val">€ 840,–</span>.
+          Der Händler gewährt einem Stammkunden <span class="val">15 %</span> Rabatt.
+          Wie viel Euro Rabatt erhält der Kunde? Wie viel bezahlt er?
+        </div>
+        <span class="rechenweg-label">Rechenweg</span>
+        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
+        <div class="answer-area">
+          <div class="answer-row">
+            <span class="answer-label">Rabatt (€)</span>
+            <input type="text" class="answer-input" placeholder="…">
+          </div>
+          <div class="answer-row">
+            <span class="answer-label">Preis nach Rabatt</span>
+            <input type="text" class="answer-input" placeholder="…">
+          </div>
+        </div>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>1b)</strong> Von <span class="val">320 Geräten</span> im Lager sind
+          <span class="val">48 Geräte</span> defekt. Wie hoch ist der Prozentsatz der defekten Geräte?
+        </div>
+        <span class="rechenweg-label">Rechenweg</span>
+        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
+        <div class="ergebnis">
+          <span class="ergebnis-label">Ergebnis</span>
+          <input type="text" placeholder="p = … %">
+        </div>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>1c)</strong> <span class="val">12 %</span> eines Warenbestands entsprechen
+          <span class="val">€ 2.880,–</span>. Wie hoch ist der gesamte Warenbestand?
+        </div>
+        <span class="rechenweg-label">Rechenweg</span>
+        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
+        <div class="ergebnis">
+          <span class="ergebnis-label">Ergebnis</span>
+          <input type="text" placeholder="G = € …">
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         ABSCHNITT 2 – MEHRWERTSTEUER
+    ══════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">2</span>
+        <span class="section-title">Mehrwertsteuer (MwSt.)</span>
+        <span class="section-pts">10 Punkte</span>
+      </div>
+
+      <div class="formula-grid">
+        <div class="formula-card">
+          <div class="fc-label">Bruttobetrag</div>
+          <div class="fc-formula">Br = Ne × 1,20</div>
+        </div>
+        <div class="formula-card">
+          <div class="fc-label">Nettobetrag</div>
+          <div class="fc-formula">Ne = Br / 1,20</div>
+        </div>
+        <div class="formula-card">
+          <div class="fc-label">MwSt.-Betrag</div>
+          <div class="fc-formula">MwSt = Br − Ne</div>
+        </div>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>2a)</strong> Ein Handy-Vertrag kostet netto <span class="val">€ 29,90</span> pro Monat.
+          Berechne den Bruttobetrag inkl. <span class="val">20 % MwSt.</span> sowie den absoluten MwSt.-Betrag.
+        </div>
+        <span class="rechenweg-label">Rechenweg</span>
+        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
+        <div class="answer-area">
+          <div class="answer-row">
+            <span class="answer-label">MwSt. (€)</span>
+            <input type="text" class="answer-input" placeholder="…">
+          </div>
+          <div class="answer-row">
+            <span class="answer-label">Brutto (€)</span>
+            <input type="text" class="answer-input" placeholder="…">
+          </div>
+        </div>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>2b)</strong> Eine Rechnung weist einen Bruttobetrag von <span class="val">€ 1.188,–</span>
+          aus (<span class="val">20 % MwSt.</span>). Berechne den Nettobetrag und den enthaltenen MwSt.-Betrag.
+        </div>
+        <span class="rechenweg-label">Rechenweg</span>
+        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
+        <div class="answer-area">
+          <div class="answer-row">
+            <span class="answer-label">Netto (€)</span>
+            <input type="text" class="answer-input" placeholder="…">
+          </div>
+          <div class="answer-row">
+            <span class="answer-label">MwSt.-Betrag (€)</span>
+            <input type="text" class="answer-input" placeholder="…">
+          </div>
+        </div>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>2c)</strong> Ergänze die folgende Tabelle vollständig:
+        </div>
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th>Artikel</th>
+              <th>Netto (€)</th>
+              <th>MwSt.-Satz</th>
+              <th>MwSt.-Betrag (€)</th>
+              <th>Brutto (€)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="given">USB-Ladekabel</td>
+              <td class="given">8,30</td>
+              <td class="given">20 %</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+            </tr>
+            <tr>
+              <td class="given">Bluetooth-Box</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+              <td class="given">20 %</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+              <td class="given">95,40</td>
+            </tr>
+            <tr>
+              <td class="given">SIM-Karte</td>
+              <td class="given">4,17</td>
+              <td class="given">20 %</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         ABSCHNITT 3 – RABATT & SKONTO
+    ══════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">3</span>
+        <span class="section-title">Rabatt &amp; Skonto</span>
+        <span class="section-pts">10 Punkte</span>
+      </div>
+
+      <div class="formula-grid">
+        <div class="formula-card">
+          <div class="fc-label">Zielbetrag</div>
+          <div class="fc-formula">Z = LP × (1 − r/100)</div>
+        </div>
+        <div class="formula-card">
+          <div class="fc-label">Skontobetrag</div>
+          <div class="fc-formula">Sk = Z × s / 100</div>
+        </div>
+        <div class="formula-card">
+          <div class="fc-label">Zahlbetrag</div>
+          <div class="fc-formula">Za = Z − Sk</div>
+        </div>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>3a)</strong> Listenpreis eines Tablets: <span class="val">€ 540,–</span>.
+          Der Händler gewährt <span class="val">10 % Händlerrabatt</span>.
+          Bei Zahlung innerhalb von 10 Tagen wird zusätzlich <span class="val">2 % Skonto</span> abgezogen.
+          Berechne: Zielbetrag, Skontobetrag, Zahlbetrag.
+        </div>
+        <span class="rechenweg-label">Rechenweg</span>
+        <textarea class="rechenweg" style="min-height:100px;" placeholder="Schritt 1: Rabatt …
+Schritt 2: Zielbetrag …
+Schritt 3: Skonto …
+Schritt 4: Zahlbetrag …"></textarea>
+        <div class="answer-area">
+          <div class="answer-row">
+            <span class="answer-label">Zielbetrag</span>
+            <input type="text" class="answer-input" placeholder="€ …">
+          </div>
+          <div class="answer-row">
+            <span class="answer-label">Skontobetrag</span>
+            <input type="text" class="answer-input" placeholder="€ …">
+          </div>
+          <div class="answer-row">
+            <span class="answer-label">Zahlbetrag</span>
+            <input type="text" class="answer-input" placeholder="€ …">
+          </div>
+        </div>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>3b)</strong> Ein Telekommunikationsunternehmen kauft <span class="val">50 Router</span>
+          zum Stückpreis von <span class="val">€ 78,–</span> (netto). Es wird ein Mengenrabatt von
+          <span class="val">8 %</span> gewährt. Wie hoch ist die Rechnungssumme nach Rabatt (netto)?
+          Wie hoch ist der Gesamtbetrag inkl. 20 % MwSt.?
+        </div>
+        <span class="rechenweg-label">Rechenweg</span>
+        <textarea class="rechenweg" style="min-height:100px;" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
+        <div class="answer-area">
+          <div class="answer-row">
+            <span class="answer-label">Netto nach Rabatt</span>
+            <input type="text" class="answer-input" placeholder="€ …">
+          </div>
+          <div class="answer-row">
+            <span class="answer-label">Brutto inkl. MwSt.</span>
+            <input type="text" class="answer-input" placeholder="€ …">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         ABSCHNITT 4 – HANDELSKALKULATION
+    ══════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">4</span>
+        <span class="section-title">Einfache Handelskalkulation</span>
+        <span class="section-pts">10 Punkte</span>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>4a)</strong> Berechne den Verkaufspreis (brutto) anhand folgender Daten:
+        </div>
+
+        <table class="calc-table" style="margin-bottom:14px;">
+          <thead>
+            <tr><th>Position</th><th style="width:200px">Betrag (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="given">Einkaufspreis (netto)</td>
+              <td class="given">210,00</td>
+            </tr>
+            <tr>
+              <td class="given">+ Bezugskosten (Fracht)</td>
+              <td class="given">12,50</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600">= Einstandspreis</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+            </tr>
+            <tr>
+              <td class="given">+ Handlungskosten (25 % vom Einstandspreis)</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600">= Selbstkostenpreis</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+            </tr>
+            <tr>
+              <td class="given">+ Gewinnaufschlag (15 % vom Selbstkostenpreis)</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600">= Nettoverkaufspreis</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+            </tr>
+            <tr>
+              <td class="given">+ MwSt. 20 %</td>
+              <td class="blank"><input type="text" placeholder="…"></td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color:#c0392b;">= Bruttoverkaufspreis</td>
+              <td class="blank"><input type="text" placeholder="€ …" style="font-weight:700; color:#c0392b;"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="aufgabe">
+        <div class="aufgabe-text">
+          <strong>4b)</strong> Der Nettoverkaufspreis eines Mobiltelefons beträgt
+          <span class="val">€ 345,–</span>. Der Einkaufspreis (netto) war <span class="val">€ 240,–</span>.
+          Berechne den prozentualen Aufschlag (Handelsspanne in %).
+        </div>
+        <span class="rechenweg-label">Rechenweg</span>
+        <textarea class="rechenweg" placeholder="Formel · Einsetzen · Rechnen …"></textarea>
+        <div class="ergebnis">
+          <span class="ergebnis-label">Ergebnis</span>
+          <input type="text" placeholder="Handelsspanne = … %">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- PUNKTE LEISTE -->
+  <div class="punkte-leiste">
+    <span>Punkte</span>
+    <div class="pts-box">AB 1 <input type="text" placeholder="/ 10"></div>
+    <div class="pts-box">AB 2 <input type="text" placeholder="/ 10"></div>
+    <div class="pts-box">AB 3 <input type="text" placeholder="/ 10"></div>
+    <div class="pts-box">AB 4 <input type="text" placeholder="/ 10"></div>
+    <div class="pts-box" style="border-left:1px solid rgba(255,255,255,.2); padding-left:24px;">
+      Gesamt <input type="text" placeholder="/ 40" style="color:#fff; font-weight:700;">
+    </div>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>
