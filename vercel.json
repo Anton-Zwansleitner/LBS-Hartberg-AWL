@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/arbeitsblatt_kaufmaennisches_rechnen_1aTK.html" }
+    { "source": "/", "destination": "/pb.html" }
   ]
 }
