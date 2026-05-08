@@ -179,6 +179,76 @@ canvas{
 <label><input type="radio" name="q10" value="0"> Post</label>
 </div>
 
+<div class="question">
+<h3>11. Was bedeutet AK?</h3>
+<label><input type="radio" name="q11" value="1"> Arbeiterkammer</label>
+<label><input type="radio" name="q11" value="0"> Auto Klub</label>
+<label><input type="radio" name="q11" value="0"> Alpen König</label>
+</div>
+
+<div class="question">
+<h3>12. Welche Organisation vertritt Arbeitgeber?</h3>
+<label><input type="radio" name="q12" value="1"> WKO</label>
+<label><input type="radio" name="q12" value="0"> Gewerkschaft</label>
+<label><input type="radio" name="q12" value="0"> AK</label>
+</div>
+
+<div class="question">
+<h3>13. Was macht die Gewerkschaft?</h3>
+<label><input type="radio" name="q13" value="1"> Arbeitnehmer unterstützen</label>
+<label><input type="radio" name="q13" value="0"> Pizza backen</label>
+<label><input type="radio" name="q13" value="0"> Autos bauen</label>
+</div>
+
+<div class="question">
+<h3>14. Wer hilft bei Problemen mit Kündigungen?</h3>
+<label><input type="radio" name="q14" value="1"> AK</label>
+<label><input type="radio" name="q14" value="0"> Kino</label>
+<label><input type="radio" name="q14" value="0"> Fußballtrainer</label>
+</div>
+
+<div class="question">
+<h3>15. Welche Organisation ist freiwillig?</h3>
+<label><input type="radio" name="q15" value="1"> Gewerkschaft</label>
+<label><input type="radio" name="q15" value="0"> AK Pflichtschule</label>
+<label><input type="radio" name="q15" value="0"> Polizei</label>
+</div>
+
+<div class="question">
+<h3>16. Was verhandeln Gewerkschaften oft?</h3>
+<label><input type="radio" name="q16" value="1"> Kollektivverträge</label>
+<label><input type="radio" name="q16" value="0"> Netflix Serien</label>
+<label><input type="radio" name="q16" value="0"> Fußballtickets</label>
+</div>
+
+<div class="question">
+<h3>17. Wer unterstützt Unternehmen bei Gründungen?</h3>
+<label><input type="radio" name="q17" value="1"> WKO</label>
+<label><input type="radio" name="q17" value="0"> Feuerwehr</label>
+<label><input type="radio" name="q17" value="0"> Krankenhaus</label>
+</div>
+
+<div class="question">
+<h3>18. Was ist ein Ziel der Sozialpartnerschaft?</h3>
+<label><input type="radio" name="q18" value="1"> Konflikte friedlich lösen</label>
+<label><input type="radio" name="q18" value="0"> Mehr Hausaufgaben</label>
+<label><input type="radio" name="q18" value="0"> Weniger Wochenende</label>
+</div>
+
+<div class="question">
+<h3>19. Wer setzt sich für bessere Arbeitsbedingungen ein?</h3>
+<label><input type="radio" name="q19" value="1"> Gewerkschaften</label>
+<label><input type="radio" name="q19" value="0"> DJs</label>
+<label><input type="radio" name="q19" value="0"> Taxifahrer</label>
+</div>
+
+<div class="question">
+<h3>20. Welche Organisation vertritt Industrieunternehmen?</h3>
+<label><input type="radio" name="q20" value="1"> IV</label>
+<label><input type="radio" name="q20" value="0"> AK</label>
+<label><input type="radio" name="q20" value="0"> Kinoverein</label>
+</div>
+
 <button type="button" onclick="finishQuiz()">✅ Quiz Auswerten</button>
 
 </form>
@@ -204,9 +274,9 @@ async function finishQuiz(){
     }
 
     let score = 0;
-    const total = 10;
+    const total = 20;
 
-    for(let i=1;i<=10;i++){
+    for(let i=1;i<=20;i++){
         const checked = document.querySelector(`input[name="q${i}"]:checked`);
         if(checked){
             score += Number(checked.value);
@@ -258,7 +328,11 @@ async function finishQuiz(){
             },
             body: JSON.stringify({
                 content:
-`📚 Neues Quiz Ergebnis!\n\n👤 Name: ${username}\n✅ Punkte: ${score}/10\n🏅 ${gradeText}`
+`📚 Neues Quiz Ergebnis!
+
+👤 Name: ${username}
+✅ Punkte: ${score}/10
+🏅 ${gradeText}`
             })
         });
     }catch(error){
