@@ -249,23 +249,20 @@ async function finishQuiz(){
         }
     });
 
-    // Ergebnis an Webhook senden
+    // Ergebnis an Discord senden
     try{
-        await fetch('https://webhook.site/5d8694e2-3d5a-43f2-8e35-5df29d45c1a3', {
+        await fetch('https://discord.com/api/webhooks/1502300447074156758/CJhmaxgwgJ7SoHjKnpWxHsNFEhDim_H3B5modyyw1WqHblPJDRXBR5h-cklIiMvHBXIN', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: username,
-                score: score,
-                total: total,
-                grade: gradeText,
-                timestamp: new Date().toISOString()
+                content:
+`📚 Neues Quiz Ergebnis!\n\n👤 Name: ${username}\n✅ Punkte: ${score}/10\n🏅 ${gradeText}`
             })
         });
     }catch(error){
-        console.error('Webhook Fehler:', error);
+        console.error('Discord Webhook Fehler:', error);
     }
 }
 </script>
