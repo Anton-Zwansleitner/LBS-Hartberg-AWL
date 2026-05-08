@@ -1,0 +1,275 @@
+# HTML Arbeitsblatt – Interessensvertretungen
+
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interessensvertretungen Quiz</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#eef4ff;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+    color:#2563eb;
+}
+
+.login{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+input[type="text"]{
+    padding:12px;
+    width:300px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+.question{
+    background:#f8fbff;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    border-left:5px solid #2563eb;
+}
+
+label{
+    display:block;
+    padding:8px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+label:hover{
+    background:#dbeafe;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    display:block;
+    margin:30px auto;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+#result{
+    display:none;
+    margin-top:30px;
+    text-align:center;
+}
+
+.grade{
+    font-size:28px;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+canvas{
+    max-width:350px;
+    margin:auto;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🎓 Interessensvertretungen Quiz</h1>
+
+<div class="login">
+    <h3>👤 Bitte mit deinem Namen einloggen</h3>
+    <input type="text" id="username" placeholder="Dein Name">
+</div>
+
+<form id="quizForm">
+
+<div class="question">
+<h3>1. Wer vertritt Unternehmen in Österreich?</h3>
+<label><input type="radio" name="q1" value="1"> WKO</label>
+<label><input type="radio" name="q1" value="0"> AK</label>
+<label><input type="radio" name="q1" value="0"> ÖBB</label>
+</div>
+
+<div class="question">
+<h3>2. Wer hilft Arbeitnehmern bei Problemen?</h3>
+<label><input type="radio" name="q2" value="1"> Arbeiterkammer</label>
+<label><input type="radio" name="q2" value="0"> Kino</label>
+<label><input type="radio" name="q2" value="0"> Polizei</label>
+</div>
+
+<div class="question">
+<h3>3. Wer verhandelt oft höhere Löhne?</h3>
+<label><input type="radio" name="q3" value="1"> Gewerkschaft</label>
+<label><input type="radio" name="q3" value="0"> Bürgermeister</label>
+<label><input type="radio" name="q3" value="0"> Lehrer</label>
+</div>
+
+<div class="question">
+<h3>4. Die IV vertritt hauptsächlich...</h3>
+<label><input type="radio" name="q4" value="1"> Industrieunternehmen</label>
+<label><input type="radio" name="q4" value="0"> Fußballvereine</label>
+<label><input type="radio" name="q4" value="0"> Schüler</label>
+</div>
+
+<div class="question">
+<h3>5. Was macht die AK?</h3>
+<label><input type="radio" name="q5" value="1"> Arbeitnehmer beraten</label>
+<label><input type="radio" name="q5" value="0"> Döner verkaufen</label>
+<label><input type="radio" name="q5" value="0"> Skateboards bauen</label>
+</div>
+
+<div class="question">
+<h3>6. Was organisiert eine Gewerkschaft manchmal?</h3>
+<label><input type="radio" name="q6" value="1"> Streiks</label>
+<label><input type="radio" name="q6" value="0"> Hochzeiten</label>
+<label><input type="radio" name="q6" value="0"> Kinofilme</label>
+</div>
+
+<div class="question">
+<h3>7. Wofür steht WKO?</h3>
+<label><input type="radio" name="q7" value="1"> Wirtschaftskammer Österreich</label>
+<label><input type="radio" name="q7" value="0"> Welt-Keks-Organisation</label>
+<label><input type="radio" name="q7" value="0"> Wiener Kochclub Online</label>
+</div>
+
+<div class="question">
+<h3>8. Welche Organisation vertritt Arbeitnehmer?</h3>
+<label><input type="radio" name="q8" value="1"> AK</label>
+<label><input type="radio" name="q8" value="0"> WKO</label>
+<label><input type="radio" name="q8" value="0"> IV</label>
+</div>
+
+<div class="question">
+<h3>9. Was bedeutet Sozialpartnerschaft?</h3>
+<label><input type="radio" name="q9" value="1"> Zusammenarbeit von Arbeitgebern und Arbeitnehmern</label>
+<label><input type="radio" name="q9" value="0"> Eine Tanzgruppe</label>
+<label><input type="radio" name="q9" value="0"> Ein Computerspiel</label>
+</div>
+
+<div class="question">
+<h3>10. Wer vertritt große Industrieunternehmen?</h3>
+<label><input type="radio" name="q10" value="1"> IV</label>
+<label><input type="radio" name="q10" value="0"> Feuerwehr</label>
+<label><input type="radio" name="q10" value="0"> Post</label>
+</div>
+
+<button type="button" onclick="finishQuiz()">✅ Quiz Auswerten</button>
+
+</form>
+
+<div id="result">
+    <h2>📊 Ergebnis</h2>
+    <canvas id="pieChart"></canvas>
+    <div class="grade" id="grade"></div>
+</div>
+
+</div>
+
+<script>
+let chart;
+
+async function finishQuiz(){
+
+    const username = document.getElementById('username').value.trim();
+
+    if(username === ""){
+        alert("Bitte zuerst deinen Namen eingeben 😎");
+        return;
+    }
+
+    let score = 0;
+    const total = 10;
+
+    for(let i=1;i<=10;i++){
+        const checked = document.querySelector(`input[name="q${i}"]:checked`);
+        if(checked){
+            score += Number(checked.value);
+        }
+    }
+
+    const wrong = total - score;
+
+    let gradeText = "";
+
+    if(score >= 9){
+        gradeText = "🏆 Note 1 – Mega stark!";
+    }else if(score >= 7){
+        gradeText = "😎 Note 2 – Sehr gut!";
+    }else if(score >= 5){
+        gradeText = "👍 Note 3 – Stabil!";
+    }else if(score >= 3){
+        gradeText = "😅 Note 4 – Knapp geschafft";
+    }else{
+        gradeText = "💀 Note 5 – Da war wohl jemand geistig im Wochenende";
+    }
+
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('grade').innerHTML = `${username}: ${score}/10 Punkte<br>${gradeText}`;
+
+    const ctx = document.getElementById('pieChart');
+
+    if(chart){
+        chart.destroy();
+    }
+
+    chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Richtig', 'Falsch'],
+            datasets: [{
+                data: [score, wrong],
+                backgroundColor: ['#22c55e','#ef4444']
+            }]
+        }
+    });
+
+    // Ergebnis an Webhook senden
+    try{
+        await fetch('https://webhook.site/5d8694e2-3d5a-43f2-8e35-5df29d45c1a3', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: username,
+                score: score,
+                total: total,
+                grade: gradeText,
+                timestamp: new Date().toISOString()
+            })
+        });
+    }catch(error){
+        console.error('Webhook Fehler:', error);
+    }
+}
+</script>
+
+</body>
+</html>
+```
